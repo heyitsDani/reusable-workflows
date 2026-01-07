@@ -7,7 +7,7 @@ inputs:
     description: "Github PAT token"
   REPO_URL:
     required: true
-    description: "Github repo JURL"
+    description: "Github repo URL"
   PR_SHA:
     required: true
     description: "SHA of PR"
