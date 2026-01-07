@@ -1,0 +1,32 @@
+name: Create Tagged Release
+description: Creates a tagged release for a consuming workflow.
+
+inputs: 
+  PAT_TOKEN:
+    required: true
+    description: "Github PAT token"
+  REPO_URL:
+    required: true
+    description: "Github repo URL"
+  PR_SHA:
+    required: true
+    description: "SHA of PR"
+
+permissions:
+  contents: write  # Required to create releases
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v4
+      with:
+        fetch-depth: 0  # Fetch all history for changelog generation
+    
+    - name: Semantic Release
+      uses: cycjimmy/semantic-release-action@v6
+      env:
+        GITHUB_TOKEN: ${{ inputs.PAT_TOKEN }}
+      with: 
+        repository_url: ${{ inputs.REPO_URL}}
