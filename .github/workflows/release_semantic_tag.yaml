@@ -37,3 +37,9 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.PAT_TOKEN }}
         with: 
           repository_url: ${{ inputs.REPO_URL }}
+          # Explicitly list plugins to exclude the default NPM one
+          extra_plugins: |
+            @semantic-release/commit-analyzer
+            @semantic-release/release-notes-generator
+            @semantic-release/github
+            @semantic-release/git
